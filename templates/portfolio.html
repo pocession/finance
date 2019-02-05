@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+<body>
+    <font size = "+2">{{ username }}</font>
+</body>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Symbol</th>
+      <th scope="col">Shares</th>
+      <th scope="col">Price_per_share</th>
+      <th scope="col">Total</th>
+      <th scope="col">Total (Cash + Stocks)</th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for stock in stocks %}
+      <tr>
+          <td>{{ stock.Symbol }}</td>
+          <td>{{ stock.Shares }}</td>
+          <td>{{ stock.Price_per_share }}</td>
+          <td>{{ stock.Total }}</td>
+      </tr>
+      {% endfor %}
+      <tr>
+          <td colspan="4">Cash remaining</td>
+          <td>{{ cash_remaining }}</td>
+      </tr>
+      <tr>
+          <td colspan="4">Total assests</td>
+          <td>{{ total_assests }}</td>
+      </tr>
+  </tbody>
+{% endblock %}

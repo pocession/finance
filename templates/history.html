@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <body>
+    <font size = "+2">{{ username }}</font>
+</body>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Symbol</th>
+      <th scope="col">Shares</th>
+      <th scope="col">Price_per_share</th>
+      <th scope="col">Time</th>
+      <th scope="col">Actions</th>
+      <th scope="col">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for stock in stocks %}
+      <tr>
+          <td>{{ stock.Symbol }}</td>
+          <td>{{ stock.Shares }}</td>
+          <td>{{ stock.Price_per_share }}</td>
+          <td>{{ stock.Time }}</td>
+          <td>{{ stock.Action }}</td>
+          <td>{{ stock.Total }}</td>
+      </tr>
+      {% endfor %}
+      <tr>
+          <td colspan="4">Cash remaining</td>
+          <td>{{ cash_remaining }}</td>
+      </tr>
+  </tbody>
+{% endblock %}
