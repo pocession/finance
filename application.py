@@ -99,7 +99,7 @@ def buy():
 
         # Check if the share is a positive integer
         try:
-            share = int(request.form.get("share"))
+            share = int(request.form.get("shares"))
         except:
             return apology("Please enter a positive integer for share", 400)
 
@@ -135,7 +135,7 @@ def buy():
             share = share,
             price_per_share = price_per_share,
             time = datetime.now().isoformat(timespec='microseconds'),
-            total = share * usd(price_per_share)
+            total = usd(share * price_per_share),
             )
 
             flash("You already bought some new stocks!")
@@ -162,10 +162,10 @@ def buy():
         username = username,
         symbol = request.form.get("symbol"),
         share = share,
-        price_per_share = price_per_share,
+        price_per_share = usd(price_per_share),
         time = datetime.now().isoformat(timespec='microseconds'),
         action = "Buy",
-        total = share * usd(price_per_share)
+        total = share * price_per_share
         )
 
         return redirect("/")
@@ -285,11 +285,11 @@ def register():
 
         # Ensure username was submitted
         if not request.form.get("username"):
-            return apology("must provide username", 403)
+            return apology("must provide username", 400)
 
         # Ensure password was submitted
         elif not request.form.get("password"):
-            return apology("must provide password", 403)
+            return apology("must provide password", 400)
 
         # Confirm password
         elif not request.form.get("password") == request.form.get("confirmation"):
@@ -336,7 +336,7 @@ def sell():
 
         # Check if the share is a positive integer
         try:
-            share = int(request.form.get("share"))
+            share = int(request.form.get("shares"))
         except:
             return apology("Please enter a positive integer for share", 400)
 
@@ -374,7 +374,7 @@ def sell():
             share = updated_share,
             price_per_share = price_per_share,
             time = datetime.now().isoformat(timespec='microseconds'),
-            total = share * usd(price_per_share)
+            total = usd(share * price_per_share)
             )
 
             flash("You already sold those stocks!")
